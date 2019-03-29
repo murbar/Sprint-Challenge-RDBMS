@@ -40,7 +40,11 @@ const deleteRecord = tableName => async id => {
 };
 
 const getProjectById = async id => {
-  const project = await getRecordById(projectsTable, id);
+  const getProject = getRecordById(projectsTable);
+  const project = await getProject(id);
+
+  if (!project) return null;
+
   project.actions = await db(actionsTable).where({ project_id: project.id });
   return project;
 };

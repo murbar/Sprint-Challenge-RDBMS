@@ -35,7 +35,6 @@ const deleteRecord = tableName => async id => {
   const deletedCount = await db(tableName)
     .where({ id })
     .del();
-  console.log(deletedCount);
   return deletedCount;
 };
 

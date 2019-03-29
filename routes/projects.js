@@ -6,14 +6,14 @@ const router = express.Router();
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const project = await db.getProjectById(id);
+    const project = await db.projects.getById(id);
     if (!project) {
       res.status(404).json({ error: 'No project with that ID.' });
     } else {
       res.status(200).json(project);
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ error: 'Cannot get project.' });
   }
 });
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
     if (!project.name) {
       res.status(400).json({ error: 'Please provide a name for the project.' });
     } else {
-      const newProject = await db.addProject(project);
+      const newProject = await db.projects.create(project);
       res.status(201).json(newProject);
     }
   } catch (error) {

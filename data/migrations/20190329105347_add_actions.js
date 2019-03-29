@@ -7,10 +7,7 @@ exports.up = function(knex) {
       .notNullable()
       .references('id')
       .inTable('projects');
-    tbl
-      .string('description')
-      .notNullable()
-      .unique();
+    tbl.string('description').notNullable();
     tbl.text('notes');
     tbl.boolean('is_complete').defaultTo(false);
   });

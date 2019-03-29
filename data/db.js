@@ -40,8 +40,8 @@ const deleteRecord = tableName => async id => {
 };
 
 const getProjectById = async id => {
-  const project = await getRecordById('projects', id);
-  project.actions = await db('actions').where({ project_id: project.id });
+  const project = await getRecordById(projectsTable, id);
+  project.actions = await db(actionsTable).where({ project_id: project.id });
   return project;
 };
 

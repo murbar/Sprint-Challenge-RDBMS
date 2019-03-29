@@ -13,8 +13,7 @@ router.post('/', async (req, res) => {
         .status(400)
         .json({ error: 'Please provide a description and project_id for the action.' });
     } else {
-      const [newActionId] = await db.addAction(action);
-      const newAction = await db.getActionById(newActionId);
+      const newAction = await db.addAction(action);
       res.status(201).json(newAction);
     }
   } catch (error) {

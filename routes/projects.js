@@ -24,8 +24,7 @@ router.post('/', async (req, res) => {
     if (!project.name) {
       res.status(400).json({ error: 'Please provide a name for the project.' });
     } else {
-      const [newProjectId] = await db.addProject(project);
-      const newProject = await db.getProjectById(newProjectId);
+      const newProject = await db.addProject(project);
       res.status(201).json(newProject);
     }
   } catch (error) {

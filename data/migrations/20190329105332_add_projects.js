@@ -6,7 +6,7 @@ exports.up = function(knex) {
       .notNullable()
       .unique();
     tbl.text('description');
-    tbl.boolean('is_complete');
+    tbl.boolean('is_complete').defaultTo(false);
   });
 };
 

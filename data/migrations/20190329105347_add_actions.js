@@ -12,7 +12,7 @@ exports.up = function(knex) {
       .notNullable()
       .unique();
     tbl.text('notes');
-    tbl.boolean('is_complete');
+    tbl.boolean('is_complete').defaultTo(false);
   });
 };
 

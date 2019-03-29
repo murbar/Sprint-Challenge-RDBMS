@@ -3,6 +3,21 @@ const db = require('../data/db');
 
 const router = express.Router();
 
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const project = await db.getProjectById(id);
+    if (!project) {
+      res.status(404).json({ error: 'No project with that ID.' });
+    } else {
+      res.status(200).json(project);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Cannot get project.' });
+  }
+});
+
 router.post('/', async (req, res) => {
   try {
     const { body: project } = req;

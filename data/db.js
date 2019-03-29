@@ -4,7 +4,7 @@ const knexConfig = require('../knexfile.js');
 
 const db = knex(knexConfig.development);
 
-function getProjectById(id) {
+async function getProjectById(id) {
   const project = await db('projects')
     .where({ id })
     .first();
@@ -12,15 +12,15 @@ function getProjectById(id) {
   return project;
 }
 
-function addProject(project) {
+async function addProject(project) {
   const [newProjectId] = await db('projects').insert(project);
-  const newProject = await db('projects').where({id: newProjectId})
+  const newProject = await db('projects').where({ id: newProjectId });
   return newProject;
 }
 
-function addAction(action) {
+async function addAction(action) {
   const [newActionId] = await db('actions').insert(action);
-  const newAction = await db('actions').where({id: newActionId})
+  const newAction = await db('actions').where({ id: newActionId });
   return newAction;
 }
 

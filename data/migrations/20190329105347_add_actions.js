@@ -6,7 +6,9 @@ exports.up = function(knex) {
       .unsigned()
       .notNullable()
       .references('id')
-      .inTable('projects');
+      .inTable('projects')
+      // when project id deleted, remove all of it's actions
+      .onDelete('CASCADE');
     tbl.string('description').notNullable();
     tbl.text('notes');
     tbl.boolean('is_complete').defaultTo(false);

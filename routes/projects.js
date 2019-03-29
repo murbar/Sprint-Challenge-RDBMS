@@ -3,6 +3,16 @@ const db = require('../data/db');
 
 const router = express.Router();
 
+router.get('/', async (req, res) => {
+  try {
+    const projects = await db.projects.getAll();
+    res.status(200).json(projects);
+  } catch (error) {
+    // console.log(error);
+    res.status(500).json({ error: 'Cannot get projects.' });
+  }
+});
+
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
